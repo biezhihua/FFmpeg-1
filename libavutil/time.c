@@ -36,6 +36,7 @@
 #include "time.h"
 #include "error.h"
 
+// 获取当前时间 (以微秒为单位)
 int64_t av_gettime(void)
 {
 #if HAVE_GETTIMEOFDAY
@@ -53,6 +54,7 @@ int64_t av_gettime(void)
 #endif
 }
 
+// 获取从某个未指定的起点开始的当前时间(以微秒为单位)
 int64_t av_gettime_relative(void)
 {
 #if HAVE_CLOCK_GETTIME && defined(CLOCK_MONOTONIC)
@@ -81,6 +83,7 @@ int av_gettime_relative_is_monotonic(void)
 #endif
 }
 
+// 睡眠一段时间
 int av_usleep(unsigned usec)
 {
 #if HAVE_NANOSLEEP

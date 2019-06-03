@@ -1236,6 +1236,7 @@ int avio_pause(AVIOContext *s, int pause)
 {
     if (!s->read_pause)
         return AVERROR(ENOSYS);
+	
     return s->read_pause(s->opaque, pause);
 }
 

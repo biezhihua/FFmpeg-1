@@ -4251,8 +4251,10 @@ int av_read_play(AVFormatContext *s)
 {
     if (s->iformat->read_play)
         return s->iformat->read_play(s);
+	
     if (s->pb)
         return avio_pause(s->pb, 0);
+	
     return AVERROR(ENOSYS);
 }
 
@@ -4260,8 +4262,10 @@ int av_read_pause(AVFormatContext *s)
 {
     if (s->iformat->read_pause)
         return s->iformat->read_pause(s);
+	
     if (s->pb)
         return avio_pause(s->pb, 1);
+	
     return AVERROR(ENOSYS);
 }
 
@@ -5056,6 +5060,7 @@ int ff_add_param_change(AVPacket *pkt, int32_t channels,
     return 0;
 }
 
+// 根据帧的流和帧的宽高比，猜测帧的样本宽高比
 AVRational av_guess_sample_aspect_ratio(AVFormatContext *format, AVStream *stream, AVFrame *frame)
 {
     AVRational undef = {0, 1};
